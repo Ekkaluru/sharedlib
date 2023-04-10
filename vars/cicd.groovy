@@ -1,4 +1,4 @@
-def download(repo)
+def Git(repo)
 {
   git "https://github.com/intelliqittrainings/${repo}"
 }
