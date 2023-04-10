@@ -9,9 +9,9 @@ def Maven()
 }
 def Deploy(jobname,ipaddress,context)
 {
-  sh "scp /var/lib/jenkins/workspace/${jobname}/webapp/target/webapp.war  ubuntu@${ipaddress}:/var/lib/tomcat9/webapps/${context}.war" 
+  sh "scp /home/ubuntu/slave1/workspace/${jobname}/webapp/target/webapp.war  ubuntu@${ipaddress}:/var/lib/tomcat9/webapps/${context}.war" 
 }
 def Testing(jobname)
 {
-  sh " java -jar /var/lib/jenkins/workspace/${jobname}/testing.jar"
+  sh " java -jar /home/ubuntu/slave1/workspace/${jobname}/testing.jar"
 }
