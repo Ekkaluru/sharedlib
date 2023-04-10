@@ -1,0 +1,25 @@
+@Library('mylibrary')_
+node
+{
+    stage('download')
+    {
+        cicd.Git("maven.git")
+    }
+    stage('build')
+    {
+        cicd.Maven()
+    }
+    stage('deploy')
+    {
+        cicd.Deploy("library2","172.31.87.8","test2")
+    }
+    stage('test')
+    {
+        cicd.Git("FunctionalTesting")
+        cicd.Testing("library2")
+    }
+    stage('delivery')
+    {
+        cicd.Deploy("library2","172.31.87.108","prod2")
+    }
+}
