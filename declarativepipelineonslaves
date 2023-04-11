@@ -1,0 +1,27 @@
+pipeline
+{
+    agent any
+    stages 
+    {
+        stage('download') 
+        {
+            steps 
+            {
+                node('built-in')
+                {
+                    git 'https://github.com/Ekkaluru/maven.git'
+                }
+            }
+        }
+        stage('Build') 
+        {
+            steps 
+            {
+                node('myslave')
+                {
+                    sh 'mvn package'
+                }
+            }   
+        }
+    }
+}
