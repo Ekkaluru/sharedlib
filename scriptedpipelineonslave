@@ -1,0 +1,21 @@
+node('myslave')
+{
+    stage('download')
+    {
+        git 'https://github.com/Ekkaluru/maven.git'
+    }
+}
+node('built-in')
+{
+    stage('build')
+    {
+        sh 'mvn package'
+    }
+}
+node('built-in')
+{
+    stage('deploy')
+    {
+        sh 'scp /home/ubuntu/jenkins/workspace/scriptedonslave/webapp/target/webapp.war ubuntu@172.31.87.108:/var/lib/tomcat8/webapps/testwebapp.war'
+    }
+}
